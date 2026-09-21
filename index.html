@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Web Cá Nhân - Nguyễn Văn A</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <!-- Tiêu đề chính -->
+      <header>
+        <div class="header-badge">Personal Portfolio</div>
+        <h1>Chào mừng đến với trang web cá nhân của tôi</h1>
+        <p class="header-subtitle">
+          Khám phá thông tin, sở thích và định hướng phát triển của tôi
+        </p>
+      </header>
+
+      <!-- Thẻ điều khiển giao diện (Chế độ xem Chuẩn / Hiện đại) -->
+      <div class="theme-toolbar">
+        <span class="toolbar-label">Chế độ hiển thị:</span>
+        <button
+          id="btn-standard"
+          class="view-btn active"
+          onclick="switchTheme('standard')"
+        >
+          ✨ Giao diện Hiện đại
+        </button>
+        <button
+          id="btn-classic"
+          class="view-btn"
+          onclick="switchTheme('classic')"
+        >
+          📄 Giao diện Cơ bản
+        </button>
+      </div>
+
+      <main class="content-wrapper">
+        <!-- Ảnh đại diện và giới thiệu bản thân -->
+        <section class="profile card">
+          <div class="avatar-wrapper">
+            <img src="avatar.jpg" alt="Ảnh đại diện" class="avatar" />
+            <span class="status-indicator" title="Sẵn sàng kết nối"></span>
+          </div>
+          <p>
+            Xin chào! Tôi là <strong>Nguyễn Đức Anh</strong>, một lập trình viên
+            yêu thích công nghệ.
+          </p>
+          <div class="role-tags">
+            <span class="tag">Web Developer</span>
+            <span class="tag">UI/UX Enthusiast</span>
+            <span class="tag">Tech Learner</span>
+          </div>
+        </section>
+
+        <!-- Danh sách sở thích -->
+        <section class="hobbies card">
+          <h2>Sở thích</h2>
+          <ul>
+            <li><span class="item-icon">📚</span> Đọc sách</li>
+            <li><span class="item-icon">⚽</span> Chơi thể thao</li>
+            <li><span class="item-icon">💻</span> Lập trình</li>
+            <li><span class="item-icon">✈️</span> Du lịch</li>
+          </ul>
+        </section>
+
+        <!-- Mục tiêu học tập -->
+        <section class="goals card">
+          <h2>Mục tiêu học tập</h2>
+          <p>
+            Tôi muốn trở thành một lập trình viên chuyên nghiệp, xây dựng các
+            sản phẩm hữu ích.
+          </p>
+        </section>
+
+        <!-- Bảng thông tin liên hệ -->
+        <footer class="card">
+          <h2>Thông tin liên hệ</h2>
+          <table border="1">
+            <tr>
+              <th>Email</th>
+              <td>
+                <a href="mailto:noiz2801@gmail.com" class="contact-link"
+                  >noiz2801@gmail.com</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <th>Facebook</th>
+              <td>
+                <a
+                  href="https://www.facebook.com/nda.0106"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-link"
+                  >facebook.com/nda.0106</a
+                >
+              </td>
+            </tr>
+          </table>
+          <div class="footer-credit">
+            <p>© 2026 Nguyễn Đức Anh. Bài thực hành CSS Cá Nhân.</p>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      function switchTheme(theme) {
+        const body = document.body;
+        const btnStandard = document.getElementById("btn-standard");
+        const btnClassic = document.getElementById("btn-classic");
+
+        if (theme === "classic") {
+          body.classList.add("classic-mode");
+          btnClassic.classList.add("active");
+          btnStandard.classList.remove("active");
+        } else {
+          body.classList.remove("classic-mode");
+          btnStandard.classList.add("active");
+          btnClassic.classList.remove("active");
+        }
+      }
+    </script>
+  </body>
+</html>

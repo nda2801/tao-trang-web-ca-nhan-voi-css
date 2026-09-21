@@ -1,0 +1,505 @@
+/* =========================================================
+   THỰC HÀNH TẠO TRANG WEB CÁ NHÂN VỚI CSS
+   Áp dụng: Bộ chọn CSS, border, border-radius, 
+            background-color, background-image, color, table.
+   ========================================================= */
+
+/* --- CSS Variables & Design Tokens --- */
+:root {
+    --primary-color: #2e7d32;
+    --primary-hover: #1b5e20;
+    --primary-light: #e8f5e9;
+    --text-main: #1f2937;
+    --text-muted: #4b5563;
+    --bg-page: #f4f6f8;
+    --bg-card: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+    --radius-md: 14px;
+    --radius-full: 9999px;
+    --font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+}
+
+/* Reset & Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- 1. Định dạng chung (Body) --- */
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-page);
+    /* Sử dụng background-image tạo họa tiết tinh tế & hiện đại */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(46, 125, 50, 0.07) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(30, 136, 229, 0.05) 0px, transparent 50%),
+        radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 24px 24px;
+    background-attachment: fixed;
+    color: var(--text-main);
+    text-align: center;
+    line-height: 1.6;
+    padding: 30px 16px;
+    min-height: 100vh;
+}
+
+/* Khung bọc giới hạn độ rộng */
+.page-container {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* Toolbar chọn chế độ */
+.theme-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0 25px;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    box-shadow: var(--shadow-sm);
+}
+
+.toolbar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.view-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+    color: var(--primary-color);
+}
+
+.view-btn.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+}
+
+/* --- 2. Định dạng tiêu đề (Header) --- */
+header {
+    background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+    color: #ffffff;
+    padding: 36px 24px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.header-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+    backdrop-filter: blur(4px);
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.header-subtitle {
+    font-size: 15px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Danh sách thẻ nội dung */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Tiêu đề mục (h2) */
+h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 6px auto 0;
+    border-radius: 2px;
+}
+
+/* --- 3. Định dạng phần Profile & Ảnh đại diện --- */
+.profile p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.profile p strong {
+    color: var(--text-main);
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #4CAF50;
+    margin: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    border-color: #2e7d32;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 22px;
+    right: 22px;
+    width: 18px;
+    height: 18px;
+    background-color: #10b981;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+}
+
+.role-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+
+.tag {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+}
+
+/* --- 4. Định dạng danh sách sở thích --- */
+.hobbies ul {
+    list-style-type: none;
+    text-align: left;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 0;
+    max-width: 560px;
+}
+
+.hobbies li {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.hobbies li:hover {
+    background-color: var(--primary-light);
+    border-color: #81c784;
+    transform: translateY(-2px);
+}
+
+.item-icon {
+    font-size: 16px;
+}
+
+/* --- 5. Định dạng mục tiêu học tập --- */
+.goals p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+    background: #fdfdfd;
+    padding: 16px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 8px 8px 0;
+    text-align: left;
+    background-color: var(--primary-light);
+}
+
+/* --- 6. Định dạng bảng thông tin liên hệ (Footer) --- */
+footer {
+    background-color: #ffffff;
+    margin-top: 10px;
+}
+
+table {
+    margin: 15px auto;
+    border-collapse: collapse;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid #e5e7eb;
+    padding: 12px 18px;
+    text-align: left;
+    font-size: 14.5px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-weight: 600;
+    width: 32%;
+}
+
+td {
+    background-color: #fafafa;
+    color: var(--text-main);
+}
+
+.contact-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.contact-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.footer-credit {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+/* =========================================================
+   CHẾ ĐỘ GIAO DIỆN CƠ BẢN (THEO NGUYÊN BẢN HƯỚNG DẪN GIÁO TRÌNH)
+   Kích hoạt khi người dùng chọn nút "Giao diện Cơ bản"
+   ========================================================= */
+body.classic-mode {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    background-image: none;
+    color: #333;
+    text-align: center;
+    padding: 0;
+}
+
+body.classic-mode .page-container {
+    max-width: 100%;
+    margin: 0;
+}
+
+body.classic-mode header {
+    background-color: #4CAF50;
+    background-image: none;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+body.classic-mode header::before,
+body.classic-mode .header-badge,
+body.classic-mode .header-subtitle,
+body.classic-mode .status-indicator,
+body.classic-mode .role-tags,
+body.classic-mode .item-icon,
+body.classic-mode .footer-credit {
+    display: none;
+}
+
+body.classic-mode header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+}
+
+body.classic-mode .card {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 20px;
+    border-radius: 0;
+}
+
+body.classic-mode .card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+body.classic-mode h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+body.classic-mode h2::after {
+    display: none;
+}
+
+body.classic-mode .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #4CAF50;
+    margin: 20px;
+    box-shadow: none;
+}
+
+body.classic-mode .avatar:hover {
+    transform: none;
+}
+
+body.classic-mode ul {
+    list-style-type: square;
+    text-align: left;
+    display: inline-block;
+    margin-top: 10px;
+    max-width: none;
+    padding-left: 20px;
+}
+
+body.classic-mode li {
+    background-color: transparent;
+    border: none;
+    padding: 4px 0;
+    display: list-item;
+    transform: none;
+}
+
+body.classic-mode li:hover {
+    background-color: transparent;
+    transform: none;
+}
+
+body.classic-mode .goals p {
+    background-color: transparent;
+    border-left: none;
+    text-align: center;
+    padding: 0;
+}
+
+body.classic-mode footer {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ddd;
+    border-radius: 0;
+}
+
+body.classic-mode table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 50%;
+    border-radius: 0;
+}
+
+body.classic-mode th, 
+body.classic-mode td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+body.classic-mode th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+body.classic-mode td {
+    background-color: transparent;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 20px;
+    }
+    .theme-toolbar {
+        flex-direction: column;
+        gap: 6px;
+    }
+    table {
+        width: 100% !important;
+    }
+}
